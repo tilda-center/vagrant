@@ -1,0 +1,8 @@
+---
+- name: restart meka.rs
+  sudo: yes
+  service:
+    name: meka.rs
+    enabled: yes
+    state: restarted
+

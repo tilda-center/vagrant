@@ -1,0 +1,30 @@
+---
+- name: create nginx conf.d directory
+  sudo: yes
+  file:
+    path: /var/lib/docker/volumes/nginx/conf.d
+    owner: root
+    group: root
+    state: directory
+
+- name: configure nginx
+  sudo: yes
+  with_items: nginx_vhosts
+  template:
+    src: vhost.conf.j2
+    dest: "/var/lib/docker/volumes/nginx/conf.d/{{ item.name }}.conf"
+    owner: root
+    group: root
+  notify:
+    - restart nginx
+
+- name: add nginx service
+  sudo: yes
+  template:
+    src: nginx.service.j2
+    dest: /lib/systemd/system/nginx.service
+    owner: root
+    group: root
+  notify:
+    - reload systemd
+    - restart nginx

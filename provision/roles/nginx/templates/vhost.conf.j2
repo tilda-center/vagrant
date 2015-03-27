@@ -1,0 +1,7 @@
+server {
+    listen 80;
+    server_name {{ item.name }};
+    error_log /var/log/nginx-{{ item.name }}.log warn;
+    access_log /var/log/nginx-{{ item.name }}.log combined;
+    root /{{ item.name }};
+}

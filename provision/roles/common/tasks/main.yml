@@ -1,0 +1,20 @@
+---
+- name: disable firewalld
+  sudo: yes
+  service:
+    name: firewalld
+    enabled: no
+    state: stopped
+
+- name: install docker
+  sudo: yes
+  yum:
+    pkg: docker
+    state: latest
+
+- name: start docker
+  sudo: yes
+  service:
+    name: docker
+    enabled: yes
+    state: started

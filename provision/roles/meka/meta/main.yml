@@ -1,0 +1,16 @@
+---
+galaxy_info:
+  author: Goran Mekić
+  description: My site
+  license: GPLv3
+  min_ansible_version: 1.2
+  platforms:
+    - name: EL
+      versions:
+        - 7
+  categories:
+    - cloud
+    - clustering
+    - web
+dependencies:
+  - {role: common}

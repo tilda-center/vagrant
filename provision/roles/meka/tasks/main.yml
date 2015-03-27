@@ -1,0 +1,11 @@
+---
+- name: add services
+  sudo: yes
+  template:
+    src: meka.rs.service.j2
+    dest: /lib/systemd/system/meka.rs.service
+    owner: root
+    group: root
+  notify:
+    - reload systemd
+    - restart meka.rs
