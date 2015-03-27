@@ -1,0 +1,4 @@
+---
+meka_vhosts:
+  - name: meka.rs
+  - name: tilda.center

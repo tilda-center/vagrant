@@ -1,11 +1,14 @@
 ---
 - name: add services
   sudo: yes
+  with_items: meka_vhosts
   template:
-    src: meka.rs.service.j2
-    dest: /lib/systemd/system/meka.rs.service
+    src: vhost.service.j2
+    dest: "/lib/systemd/system/{{ item.name }}.service"
     owner: root
     group: root
   notify:
     - reload systemd
     - restart meka.rs
+    - restart tilda.center
+    - restart nginx

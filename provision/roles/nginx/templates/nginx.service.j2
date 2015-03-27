@@ -9,7 +9,7 @@ TimeoutStartSec=0
 ExecStartPre=-/usr/bin/docker kill nginx
 ExecStartPre=-/usr/bin/docker rm nginx
 ExecStartPre=/usr/bin/docker pull nginx:latest
-ExecStart=/usr/bin/docker run -p 80:80 -p 443:443 -v /var/lib/docker/volumes/nginx/conf.d:/etc/nginx/conf.d:ro --name nginx --volumes-from meka.rs --rm nginx:latest
+ExecStart=/usr/bin/docker run -p 80:80 -p 443:443 -v /var/lib/docker/volumes/nginx/conf.d:/etc/nginx/conf.d:ro --name nginx --volumes-from meka.rs --volumes-from tilda.center --rm nginx:latest
 ExecStop=/usr/bin/docker stop nginx
 
 [Install]
