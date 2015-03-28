@@ -15,8 +15,6 @@
     dest: "/var/lib/docker/volumes/nginx/conf.d/{{ item.name }}.conf"
     owner: root
     group: root
-  notify:
-    - restart nginx
 
 - name: add nginx service
   sudo: yes
@@ -25,9 +23,6 @@
     dest: /lib/systemd/system/nginx.service
     owner: root
     group: root
-  notify:
-    - reload systemd
-    - restart nginx
 
 - name: restart nginx
   sudo: yes
@@ -35,3 +30,5 @@
     name: nginx
     enabled: yes
     state: restarted
+  tags:
+    - deploy

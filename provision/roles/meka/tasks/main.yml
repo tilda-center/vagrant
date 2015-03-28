@@ -7,11 +7,6 @@
     dest: "/lib/systemd/system/{{ item.name }}.service"
     owner: root
     group: root
-  notify:
-    - reload systemd
-    - restart meka.rs
-    - restart tilda.center
-    - restart nginx
 
 - name: restart meka.rs
   sudo: yes
@@ -19,6 +14,8 @@
     name: meka.rs
     enabled: yes
     state: restarted
+  tags:
+    - deploy
 
 - name: restart tilda.center
   sudo: yes
@@ -26,3 +23,5 @@
     name: tilda.center
     enabled: yes
     state: restarted
+  tags:
+    - deploy
