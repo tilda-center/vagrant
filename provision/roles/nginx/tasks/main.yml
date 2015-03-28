@@ -28,3 +28,10 @@
   notify:
     - reload systemd
     - restart nginx
+
+- name: restart nginx
+  sudo: yes
+  service:
+    name: nginx
+    enabled: yes
+    state: restarted

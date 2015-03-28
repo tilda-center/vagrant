@@ -12,3 +12,17 @@
     - restart meka.rs
     - restart tilda.center
     - restart nginx
+
+- name: restart meka.rs
+  sudo: yes
+  service:
+    name: meka.rs
+    enabled: yes
+    state: restarted
+
+- name: restart tilda.center
+  sudo: yes
+  service:
+    name: tilda.center
+    enabled: yes
+    state: restarted
