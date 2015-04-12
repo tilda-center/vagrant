@@ -1,0 +1,31 @@
+---
+- name: restart postgresql
+  sudo: yes
+  service:
+    name: postgresql
+    enabled: yes
+    state: restarted
+
+- name: wait for postgresql
+  wait_for:
+    port: 5432
+    delay: 5
+
+- name: create tilda_center user
+  postgresql_user:
+    name: "{{ tilda_postgresql_user }}"
+    password: "{{ tilda_postgresql_password }}"
+    login_user: postgres
+    login_password: "{{ tilda_postgresql_password }}"
+    login_host: 127.0.0.1
+    encrypted: yes
+
+- name: create tilda_center db
+  postgresql_db:
+    name: "{{ tilda_postgresql_db }}"
+    encoding: UTF-8
+    template: template0
+    login_host: 127.0.0.1
+    login_user: postgres
+    login_password: "{{ tilda_postgresql_password }}"
+    owner: "{{ tilda_postgresql_user }}"

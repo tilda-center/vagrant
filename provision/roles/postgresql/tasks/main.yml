@@ -1,0 +1,31 @@
+---
+- name: install postgresql packages
+  sudo: yes
+  with_items: postgresql_packages
+  yum:
+    pkg: "{{ item.name }}"
+    state: latest
+
+- name: create postgresql volume
+  sudo: yes
+  file:
+    path: /var/lib/docker/volumes/postgresql/data
+    owner: root
+    group: root
+    state: directory
+
+- name: add postgresql service
+  sudo: yes
+  template:
+    src: postgresql.service.j2
+    dest: /lib/systemd/system/postgresql.service
+    owner: root
+    group: root
+  notify:
+    - reload systemd
+    - restart postgresql
+    - wait for postgresql
+    - create tilda_center user
+    - create tilda_center db
+    - restart tilda_center
+    - restart nginx

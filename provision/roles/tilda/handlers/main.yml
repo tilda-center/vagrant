@@ -1,0 +1,7 @@
+---
+- name: restart tilda_center
+  sudo: yes
+  service:
+    name: tilda_center
+    enabled: yes
+    state: restarted

@@ -1,4 +1,3 @@
 ---
 nginx_vhosts:
-  - name: meka.rs
-  - name: tilda.center
+  - name: tilda_center

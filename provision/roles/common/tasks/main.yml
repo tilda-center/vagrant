@@ -6,10 +6,21 @@
     enabled: no
     state: stopped
 
-- name: install docker
+- name: install yum-utils
   sudo: yes
   yum:
-    pkg: docker
+    pkg: yum-utils
+    state: latest
+
+- name: enable public_ol6_latest
+  sudo: yes
+  command: yum-config-manager --enable public_ol6_latest
+
+- name: install common packages
+  sudo: yes
+  with_items: common_packages
+  yum:
+    pkg: "{{ item.name }}"
     state: latest
 
 - name: start docker

@@ -1,0 +1,19 @@
+DEBUG = True
+
+# Make these unique, and don't share it with anybody.
+SECRET_KEY = "{{ tilda_secret_key }}"
+NEVERCACHE_KEY = "{{ tilda_nevercache_key }}"
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "{{ tilda_postgresql_db }}",
+        "USER": "{{ tilda_postgresql_user }}",
+        "PASSWORD": "{{ tilda_postgresql_password }}",
+        "HOST": "postgresql",
+    }
+}
+
+TIME_ZONE = 'Europe/Belgrade'
+SITE_TAGLINE = 'Hackerspace in Novi Sad'
+SITE_TITLE = 'Tilda Center'

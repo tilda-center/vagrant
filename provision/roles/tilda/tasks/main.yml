@@ -1,0 +1,27 @@
+---
+- name: create tilda_center volume
+  sudo: yes
+  file:
+    path: /var/lib/docker/volumes/tilda_center
+    owner: root
+    group: root
+    state: directory
+
+- name: configure tilda_center
+  sudo: yes
+  template:
+    src: local_settings.py.j2
+    dest: /var/lib/docker/volumes/tilda_center/local_settings.py
+    owner: root
+    group: root
+
+- name: add tilda_center service
+  sudo: yes
+  template:
+    src: tilda_center.service.j2
+    dest: "/lib/systemd/system/tilda_center.service"
+    owner: root
+    group: root
+  notify:
+    - reload systemd
+    - restart tilda_center

@@ -1,0 +1,17 @@
+[Unit]
+Description=PostgreSQL
+After=network.service
+Requires=network.service
+Wants=network.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=/usr/bin/docker pull postgres:latest
+ExecStartPre=-/usr/bin/docker kill postgresql
+ExecStartPre=-/usr/bin/docker rm postgresql
+ExecStart=/usr/bin/docker run -p 127.0.0.1:5432:5432 -e POSTGRES_PASSWORD={{ tilda_postgresql_password }} -v /var/lib/docker/volumes/postgresql/data:/var/lib/postgresql/data --rm --name postgresql postgres:latest
+ExecStop=/usr/bin/docker stop postgresql
+
+[Install]
+WantedBy=multi-user.target
+

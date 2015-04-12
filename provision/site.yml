@@ -1,5 +1,6 @@
 - name: Provisioning for meka.rs
   hosts: all
   roles:
-    - meka
+    - postgresql
+    - tilda
     - nginx
