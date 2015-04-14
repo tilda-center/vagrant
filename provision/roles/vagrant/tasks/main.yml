@@ -1,0 +1,5 @@
+---
+- name: configure local_settings for vagrant
+  template:
+    src: local_settings.py.j2
+    dest: /vagrant/projects/tilda/local_settings.py

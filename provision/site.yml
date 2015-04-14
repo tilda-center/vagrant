@@ -4,3 +4,8 @@
     - postgresql
     - tilda
     - nginx
+
+- name: Provisioning for meka.rs
+  hosts: vagrant
+  roles:
+    - vagrant

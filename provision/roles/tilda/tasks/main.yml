@@ -25,3 +25,4 @@
   notify:
     - reload systemd
     - restart tilda_center
+    - restart nginx

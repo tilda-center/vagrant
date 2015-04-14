@@ -5,8 +5,8 @@ upstream tilda_uwsgi_cluster {
 server {
     listen 80;
     server_name {{ item.name }};
-    error_log /var/log/nginx-{{ item.name }}.log warn;
-    access_log /var/log/nginx-{{ item.name }}.log combined;
+    error_log /var/log/nginx/access.log warn;
+    access_log /var/log/nginx/error.log combined;
 
     location /static {
         alias /{{ item.name }}/static/;

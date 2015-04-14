@@ -14,5 +14,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                 "vagrant" => ["meka"],
             }
         end
+        meka.vm.provider "virtualbox" do |v|
+            v.memory = 512
+        end
     end
 end
