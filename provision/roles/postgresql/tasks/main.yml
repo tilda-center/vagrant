@@ -6,14 +6,6 @@
     pkg: "{{ item.name }}"
     state: latest
 
-- name: create postgresql volume
-  sudo: yes
-  file:
-    path: /var/lib/docker/volumes/postgresql/data
-    owner: root
-    group: root
-    state: directory
-
 - name: add postgresql service
   sudo: yes
   template:
