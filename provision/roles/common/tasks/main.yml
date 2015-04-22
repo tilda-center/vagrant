@@ -1,4 +1,10 @@
 ---
+- name: update all packages
+  sudo: yes
+  yum:
+    pkg: '*'
+    state: latest
+
 - name: disable firewalld
   sudo: yes
   service:
