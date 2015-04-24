@@ -1,0 +1,7 @@
+---
+vagrant_packages:
+  - name: git
+
+vagrant_keys:
+  - name: id_dsa
+  - name: id_dsa.pub

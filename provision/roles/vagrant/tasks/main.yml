@@ -1,5 +1,36 @@
 ---
+- name: install packages
+  sudo: yes
+  with_items: vagrant_packages
+  yum:
+    pkg: "{{ item.name }}"
+    state: latest
+
+- name: copy ssh keys
+  with_items: vagrant_keys
+  copy:
+    src: "{{ item.name }}"
+    dest: ~/.ssh
+    mode: 0600
+
+- name: create projects directory
+  file:
+    path: /vagrant/projects
+    state: directory
+
+- name: clone the project
+  git:
+    repo: git@github.com:tilda-center/website
+    dest: /vagrant/projects/tilda
+    accept_hostkey: yes
+
 - name: configure local_settings for vagrant
   template:
     src: local_settings.py.j2
     dest: /vagrant/projects/tilda/local_settings.py
+
+- name: add vagrant bin dir to path
+  sudo: yes
+  template:
+    src: vagrant.sh.j2
+    dest: /etc/profile.d/vagrant.sh
