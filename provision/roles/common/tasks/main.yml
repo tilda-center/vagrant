@@ -1,31 +1,13 @@
 ---
-- name: update all packages
+- name: update apt
   sudo: yes
-  yum:
-    pkg: '*'
-    state: latest
-
-- name: disable firewalld
-  sudo: yes
-  service:
-    name: firewalld
-    enabled: no
-    state: stopped
-
-- name: install yum-utils
-  sudo: yes
-  yum:
-    pkg: yum-utils
-    state: latest
-
-- name: enable public_ol6_latest
-  sudo: yes
-  command: yum-config-manager --enable public_ol6_latest
+  apt:
+    update_cache: yes
 
 - name: install common packages
   sudo: yes
   with_items: common_packages
-  yum:
+  apt:
     pkg: "{{ item.name }}"
     state: latest
 
