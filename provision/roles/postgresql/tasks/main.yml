@@ -2,7 +2,7 @@
 - name: install postgresql packages
   sudo: yes
   with_items: postgresql_packages
-  yum:
+  apt:
     pkg: "{{ item.name }}"
     state: latest
 

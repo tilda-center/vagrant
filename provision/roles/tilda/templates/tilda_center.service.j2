@@ -1,8 +1,8 @@
 [Unit]
 Description=Tilda Center
-After=postgresql.service network.service
-Requires=postgresql.service network.service
-Wants=postgresql.service network.service
+After=postgresql.service networking.service
+Requires=postgresql.service networking.service
+Wants=postgresql.service networking.service
 
 [Service]
 TimeoutStartSec=0

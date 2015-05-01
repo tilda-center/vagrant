@@ -26,7 +26,7 @@
 
 - name: configure local_settings for vagrant
   template:
-    src: local_settings.py.j2
+    src: templates/local_settings.py.j2
     dest: /vagrant/projects/tilda/local_settings.py
 
 - name: add vagrant bin dir to path
