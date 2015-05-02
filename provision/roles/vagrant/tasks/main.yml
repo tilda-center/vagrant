@@ -2,9 +2,15 @@
 - name: install packages
   sudo: yes
   with_items: vagrant_packages
-  yum:
+  apt:
     pkg: "{{ item.name }}"
     state: latest
+
+- name: install bower
+  sudo: yes
+  command: npm install -g bower
+  args:
+    creates: /usr/local/bin/bower
 
 - name: copy ssh keys
   with_items: vagrant_keys
@@ -23,6 +29,13 @@
     repo: git@github.com:tilda-center/website
     dest: /vagrant/projects/tilda
     accept_hostkey: yes
+    update: no
+
+- name: get starter kit
+  command: bower install --save inuit-starter-kit
+  args:
+    chdir: /vagrant/projects/tilda/tilda_theme
+    creates: /vagrant/projects/tilda/tilda_theme/bower_components
 
 - name: configure local_settings for vagrant
   template:
@@ -34,3 +47,24 @@
   template:
     src: vagrant.sh.j2
     dest: /etc/profile.d/vagrant.sh
+
+- name: install gems
+  sudo: yes
+  with_items: vagrant_gems
+  gem:
+    name: "{{ item.name }}"
+    user_install: no
+    state: present
+
+- name: install npms
+  sudo: yes
+  with_items: vagrant_npms
+  npm:
+    name: "{{ item.name }}"
+    global: yes
+
+- name: install local npms
+  with_items: vagrant_npms_local
+  npm:
+    name: "{{ item.name }}"
+    path: /vagrant/projects/tilda/tilda_theme

@@ -7,3 +7,8 @@
     - postgresql
     - tilda
     - nginx
+
+- name: Provisioning for tilda.center
+  hosts: vagrant
+  roles:
+    - vagrant
