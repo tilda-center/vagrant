@@ -1,2 +1,2 @@
 [production]
-46.101.179.139 ansible_ssh_user=root
+188.166.83.246 ansible_ssh_user=root
