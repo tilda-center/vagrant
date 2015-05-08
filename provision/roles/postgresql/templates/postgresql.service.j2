@@ -1,8 +1,8 @@
 [Unit]
 Description=PostgreSQL
-After=docker.service
-Requires=docker.service
-Wants=docker.service
+After=docker.service networking.service
+Requires=docker.service networking.service
+Wants=docker.service networking.service
 
 [Service]
 TimeoutStartSec=0

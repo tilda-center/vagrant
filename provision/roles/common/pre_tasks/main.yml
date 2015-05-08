@@ -1,0 +1,27 @@
+---
+- name: add source.list
+  sudo: yes
+  copy:
+    src: sources.list
+    dest: /etc/apt/sources.list
+    owner: root
+    group: root
+    mode: 0644
+
+- name: add backports key
+  sudo: yes
+  apt_key:
+    id: 9D6D8F6BC857C906
+    keyserver: keyserver.ubuntu.com
+
+- name: update apt
+  sudo: yes
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: update all packages
+  sudo: yes
+  apt:
+    upgrade: dist
+    state: latest

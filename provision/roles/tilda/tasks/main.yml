@@ -10,7 +10,7 @@
 - name: configure tilda_center
   sudo: yes
   template:
-    src: local_settings.py.j2
+    src: templates/local_settings.py.j2
     dest: /var/lib/docker/volumes/tilda_center/local_settings.py
     owner: root
     group: root

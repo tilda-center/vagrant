@@ -1,8 +1,8 @@
 [Unit]
 Description=NginX
-After=tilda_center.service network.service
-Requires=tilda_center.service network.service
-Wants=tilda_center.target network.service
+After=tilda_center.service networking.service
+Requires=tilda_center.service networking.service
+Wants=tilda_center.target networking.service
 
 [Service]
 TimeoutStartSec=0

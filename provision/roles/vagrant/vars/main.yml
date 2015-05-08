@@ -1,7 +1,28 @@
 ---
 vagrant_packages:
-  - name: git
+  - name: git-core
+  - name: nodejs-legacy
+  - name: npm
+  - name: ruby
+  - name: ruby-dev
 
 vagrant_keys:
   - name: id_dsa
   - name: id_dsa.pub
+
+vagrant_gems:
+  - name: sass
+
+vagrant_npms:
+  - name: gulp
+
+vagrant_npms_local:
+  - name: browserify
+  - name: gulp
+  - name: gulp-autoprefixer
+  - name: gulp-sass
+  - name: gulp-sourcemaps
+  - name: gulp-uglify
+  - name: gulp-webserver
+  - name: vinyl-buffer
+  - name: vinyl-source-stream
